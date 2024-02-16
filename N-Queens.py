@@ -14,8 +14,7 @@ class queens():
         self.y_coordinate = y_coordinate
         self.queen_locations = [(x_coordinate, y_coordinate)]
         self.x_values = np.arange(self.BOARD_WIDTH)
-        print(self.x_coordinate)
-        print(self.y_coordinate)
+    
     def queen_attack(self):
         '''
         generates list of values of all possible squares on the board the queen can attack
@@ -36,7 +35,6 @@ class queens():
 
         for i, j in attack_square:
             self.board[i][j] = 1
-        print(self.board)
 
     def add_queen(self):
         '''
@@ -51,29 +49,20 @@ class queens():
             self.x_coordinate, self.y_coordinate = zeros[0]
             self.queen_locations.append((self.x_coordinate, self.y_coordinate))
             self.queen_attack()
-        self.write_queen()
-
-
+        return self.write_queen()
 
     def write_queen(self):
         '''
         converts the matrix to a datafram so that string can be added to make the board look nicer
         :return:
         '''
-        print(self.queen_locations)
         for i, j in self.queen_locations:
             self.board[i][j] = 4
         board = pd.DataFrame(self.board)
         board.replace(float(1),'.', inplace=True)
         board.replace(float(4), 'Q', inplace=True)
-        print(board)
-
-
-
-
-
+        return board
 
 instance1 = queens(4, 2, 2)
 instance1.queen_attack()
-instance1.add_queen()
 
